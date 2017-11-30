@@ -62,7 +62,7 @@ namespace MyTool
                 wc.Encoding = Encoding.UTF8;
                 wc.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0";
                 wc.Headers[HttpRequestHeader.Accept] = "*/*";
-                string s= wc.DownloadString("http://ipblock.chacuo.net/view/" + cTag);                
+                //string s= wc.DownloadString("http://ipblock.chacuo.net/view/" + cTag);                
                 wc.Headers[HttpRequestHeader.Referer] = "http://ipblock.chacuo.net/view/" + cTag;
                string body= wc.DownloadString("http://ipblock.chacuo.net/down/t_txt=" + cTag); 
                 if (string.IsNullOrEmpty(body))

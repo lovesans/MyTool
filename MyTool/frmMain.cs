@@ -86,7 +86,7 @@ namespace MyTool
             LoadForm("ivacy服务器PING", new FrmIvacyPing());
         }
 
-        private void navBarItem4_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        private void navBarItem4_LinkClicked_1(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             LoadForm("加密解密工具", new frmCrypt());
         }
