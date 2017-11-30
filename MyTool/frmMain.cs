@@ -95,5 +95,15 @@ namespace MyTool
         {
             LoadForm("PING工具", new frmPing());
         }
+
+        private void barStaticItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.261k.com");
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            brsVersion.Caption = Application.ProductVersion;
+        }
     }
 }
