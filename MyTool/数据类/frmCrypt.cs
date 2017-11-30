@@ -78,17 +78,30 @@ namespace MyTool
         {
             try
             {
-                if(string.IsNullOrEmpty( cbxMD5Type.Text))
+                if (string.IsNullOrEmpty(cbxMD5Type.Text))
                     throw new Exception("必须选择加密方式！");
-                MD5CrypType mc = (MD5CrypType)Enum.Parse(typeof(MD5CrypType), cbxMD5Type.Text.Replace("(","").Replace(")","").Replace("$","dollar").Replace(".","dot"));
+                MD5CrypType mc = (MD5CrypType)Enum.Parse(typeof(MD5CrypType), cbxMD5Type.Text.Replace("(", "").Replace(")", "").Replace("$", "dollar").Replace(".", "dot"));
                 return mc;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }
         }
-#endregion
+        private void btnMD5Crypt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tbxMD5Crypted.Text = "";
+                string pass = CryptUtil.MD5Crypt(tbxMD5Origin.Text, GetMD5CrypType(), tbxMDSalt.Text, radioGroup1.SelectedIndex, getEncoding(cbxMD5Charset));
+                tbxMD5Crypted.Text = pass;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
 
 
     }

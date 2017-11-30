@@ -14,7 +14,7 @@ namespace MyTool
         /// <param name="txt">原文</param>
         /// <param name="sEncode">编码</param>
         /// <returns></returns>
-        public static string MD32Crypt(string txt, Encoding sEncode = null)
+        private static string MD32Crypt(string txt, Encoding sEncode = null)
         {
             try
             {
@@ -34,23 +34,79 @@ namespace MyTool
                 throw;
             }
         }
-        /// <summary>
-        /// 带盐32位MD5加密
-        /// </summary>
-        /// <param name="txt">原文</param>
-        /// <param name="sault">盐</param>
-        /// <param name="sEncode">编码</param>
-        /// <returns></returns>
-        public static string MD32Crypt(string txt, string sault, Encoding sEncode = null)
+        public static string  MD5Crypt(string txt,MD5CrypType mType,string salt,int outType=0,Encoding encoding=null)
         {
             try
             {
-                string s = MD32Crypt(txt, sEncode) + sault;
-                s = MD32Crypt(s);
-                return s;
+                encoding = encoding ?? Encoding.UTF8;
+                string pass = "";
+                switch (mType)
+                {
+                    case MD5CrypType.md5pass:
+                        pass = MD32Crypt(txt,encoding);
+                        break;
+                    case MD5CrypType.md5md5pass:
+                        pass = MD32Crypt(MD32Crypt(txt,encoding),encoding);
+                        break;
+                    case MD5CrypType.md5dollarpassdotdollarsalt:
+                        pass = MD32Crypt(txt + salt,encoding);
+                        break;
+                    case MD5CrypType.md5dollarsaltdotdollarpass:
+                        pass = MD32Crypt(salt + pass, encoding);
+                        break;
+                    case MD5CrypType.md5md5dollarpassdotdollarsalt:
+                        pass = MD32Crypt(MD32Crypt(txt, encoding) + salt, encoding);
+                        break;
+                    case MD5CrypType.md5md5dollarsaltdotdollarpass:
+                        pass = MD32Crypt(MD32Crypt(salt, encoding) + txt, encoding);
+                        break;
+                    case MD5CrypType.md5dollarsaltdotdollarpassdotdollarsalt:
+                        pass = MD32Crypt(salt + txt + salt, encoding);
+                        break;
+                    case MD5CrypType.md5dollarsaltdotmd5dollarpass:
+                        pass = MD32Crypt(salt + MD32Crypt(txt, encoding), encoding);
+                        break;
+                    case MD5CrypType.md5md5dollarpassdotmd5dollarsalt:
+                        pass = MD32Crypt(MD32Crypt(txt, encoding) + MD32Crypt(salt, encoding), encoding);
+                        break;
+                    case MD5CrypType.md5md5dollarsaltdotmd5dollarpass:
+                        pass = MD32Crypt(MD32Crypt(salt, encoding) + MD32Crypt(txt, encoding), encoding);
+                        break;
+                    default:
+                        pass = "";
+                        break;
+                }
+                switch (outType)
+                {
+                    case 0:
+                        //32大
+                        pass = pass.ToUpper();
+                        break;
+                    case 1:
+                        //32小
+                        pass = pass.ToLower();
+                        break;
+                    case 2:
+                        //16大
+                        pass = pass.Substring(8, 16).ToUpper();
+                        break;
+                    case 3:
+                        //16小
+                        pass = pass.Substring(8, 16).ToLower();
+                        break;
+                    case 4:
+                        //base64
+                        pass = pass.ToUpper();
+                        pass = Convert.ToBase64String(encoding.GetBytes(pass));
+                        break;
+                    default:
+                        break;
+                }
+                return pass;
             }
             catch (Exception)
             {
+
                 throw;
             }
         }
