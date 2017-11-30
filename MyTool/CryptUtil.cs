@@ -8,6 +8,7 @@ namespace MyTool
 {
     public static class CryptUtil
     {
+        #region MD5
         /// <summary>
         /// 32位MD5加密
         /// </summary>
@@ -34,7 +35,7 @@ namespace MyTool
                 throw;
             }
         }
-        public static string  MD5Crypt(string txt,MD5CrypType mType,string salt,int outType=0,Encoding encoding=null)
+        public static string MD5Crypt(string txt, MD5CrypType mType, string salt, int outType = 0, Encoding encoding = null)
         {
             try
             {
@@ -43,13 +44,13 @@ namespace MyTool
                 switch (mType)
                 {
                     case MD5CrypType.md5pass:
-                        pass = MD32Crypt(txt,encoding);
+                        pass = MD32Crypt(txt, encoding);
                         break;
                     case MD5CrypType.md5md5pass:
-                        pass = MD32Crypt(MD32Crypt(txt,encoding),encoding);
+                        pass = MD32Crypt(MD32Crypt(txt, encoding), encoding);
                         break;
                     case MD5CrypType.md5dollarpassdotdollarsalt:
-                        pass = MD32Crypt(txt + salt,encoding);
+                        pass = MD32Crypt(txt + salt, encoding);
                         break;
                     case MD5CrypType.md5dollarsaltdotdollarpass:
                         pass = MD32Crypt(salt + pass, encoding);
@@ -103,7 +104,7 @@ namespace MyTool
                         break;
                 }
                 return pass;
-                
+
             }
             catch (Exception)
             {
@@ -111,13 +112,14 @@ namespace MyTool
                 throw;
             }
         }
-#region SHA
-        private static string SHA1Crypt(string txt,Encoding encoding=null)
+        #endregion
+        #region SHA
+        private static string SHA1Crypt(string txt, Encoding encoding = null)
         {
             try
             {
                 encoding = encoding ?? Encoding.UTF8;
-                if(string.IsNullOrEmpty(txt))
+                if (string.IsNullOrEmpty(txt))
                     throw new Exception("原文不能为空！");
                 SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
                 byte[] org = encoding.GetBytes(txt);
@@ -204,12 +206,12 @@ namespace MyTool
                 throw;
             }
         }
-        public static string SHAEncrypt(string txt,string salt,SHACrypType cType,Encoding encoding=null)
+        public static string SHAEncrypt(string txt, string salt, SHACrypType cType, Encoding encoding = null)
         {
             try
             {
                 encoding = encoding ?? Encoding.UTF8;
-                if(string.IsNullOrEmpty(txt))
+                if (string.IsNullOrEmpty(txt))
                     throw new Exception("原文不能为空！");
                 string pass = "";
                 switch (cType)
@@ -261,7 +263,8 @@ namespace MyTool
                 throw;
             }
         }
-#endregion
+        #endregion
+        #region DES
         /// <summary>
         /// DES加密
         /// </summary>
@@ -270,7 +273,7 @@ namespace MyTool
         /// <param name="keyIV">偏移</param>
         /// <param name="sEncode">编码</param>
         /// <returns></returns>
-        public static string DESEncrypt(string txt, string key, string keyIV, Encoding sEncode = null)
+        public static string DESEncrypt(string txt, string key, string keyIV = null, CipherMode mode = CipherMode.CFB, PaddingMode padding = PaddingMode.None, Encoding sEncode = null)
         {
             try
             {
@@ -282,22 +285,28 @@ namespace MyTool
                         key += "0";
                     }
                 }
-                if (key.Length > 8)
-                    key = key.Substring(0, 8);
-
-                if (keyIV.Length < 8)
+                if (string.IsNullOrEmpty(keyIV))
                 {
-                    for (int i = 0; keyIV.Length < 8; i++)
+                    if (key.Length > 8)
+                        key = key.Substring(0, 8);
+
+                    if (keyIV.Length < 8)
                     {
-                        keyIV += "0";
+                        for (int i = 0; keyIV.Length < 8; i++)
+                        {
+                            keyIV += "0";
+                        }
                     }
+                    if (keyIV.Length > 8)
+                        keyIV = keyIV.Substring(0, 8);
                 }
-                if (keyIV.Length > 8)
-                    keyIV = keyIV.Substring(0, 8);
+
                 DESCryptoServiceProvider des = new DESCryptoServiceProvider(); //加解密对象
+                des.Mode = mode;
+                des.Padding = padding;
                 byte[] orgByte = sEncode.GetBytes(txt);//原文
                 des.Key = sEncode.GetBytes(key);//密钥
-                if (string.IsNullOrEmpty(keyIV)) //偏移量
+                if (string.IsNullOrEmpty(keyIV)) //初始偏移向量
                     des.IV = new byte[8];
                 else
                     des.IV = sEncode.GetBytes(keyIV);
@@ -328,7 +337,7 @@ namespace MyTool
         /// <param name="keyIV">偏移</param>
         /// <param name="sEncode">编码</param>
         /// <returns></returns>
-        public static string DESDecrypt(string pass, string key, string keyIV, Encoding sEncode = null)
+        public static string DESDecrypt(string pass, string key, string keyIV, CipherMode mode = CipherMode.CFB, PaddingMode padding = PaddingMode.None, Encoding sEncode = null)
         {
             try
             {
@@ -342,23 +351,30 @@ namespace MyTool
                 }
                 if (key.Length > 8)
                     key = key.Substring(0, 8);
-
-                if (keyIV.Length < 8)
+                if (!string.IsNullOrEmpty(keyIV))
                 {
-                    for (int i = 0; keyIV.Length < 8; i++)
+                    if (keyIV.Length < 8)
                     {
-                        keyIV += "0";
+                        for (int i = 0; keyIV.Length < 8; i++)
+                        {
+                            keyIV += "0";
+                        }
                     }
+                    if (keyIV.Length > 8)
+                        keyIV = keyIV.Substring(0, 8);
                 }
-                if (keyIV.Length > 8)
-                    keyIV = keyIV.Substring(0, 8);
 
                 DESCryptoServiceProvider des = new DESCryptoServiceProvider();
+                des.Mode = mode;
+                des.Padding = padding;
                 byte[] orgByte = new byte[pass.Length / 2];
                 for (int i = 0; i < pass.Length / 2; i++)
                     orgByte[i] = (byte)(Convert.ToInt32(pass.Substring(i * 2, 2), 16));
                 des.Key = sEncode.GetBytes(key);
-                des.IV = sEncode.GetBytes(keyIV);
+                if (string.IsNullOrEmpty(keyIV))
+                    des.IV = new byte[8];
+                else
+                    des.IV = sEncode.GetBytes(keyIV);
                 System.IO.MemoryStream ms = new System.IO.MemoryStream();
                 CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
                 cs.Write(orgByte, 0, orgByte.Length);
@@ -375,6 +391,8 @@ namespace MyTool
                 throw;
             }
         }
+        #endregion
+        #region BASE64
         /// <summary>
         /// BASE64编码
         /// </summary>
@@ -382,12 +400,12 @@ namespace MyTool
         /// <param name="encoding">编码</param>
         /// <param name="option">是否加换行符</param>
         /// <returns></returns>
-        public static string Base64Encrypt(string txt,Encoding encoding=null, Base64FormattingOptions option= Base64FormattingOptions.None)
+        public static string Base64Encrypt(string txt, Encoding encoding = null, Base64FormattingOptions option = Base64FormattingOptions.None)
         {
             try
             {
-                encoding= encoding ?? Encoding.UTF8;
-                if(string.IsNullOrEmpty(txt))
+                encoding = encoding ?? Encoding.UTF8;
+                if (string.IsNullOrEmpty(txt))
                     throw new Exception("原文不能为空！");
                 byte[] buffer = encoding.GetBytes(txt);
                 return Convert.ToBase64String(buffer, option);
@@ -404,15 +422,15 @@ namespace MyTool
         /// <param name="pass">密文</param>
         /// <param name="encoding">编码</param>
         /// <returns></returns>
-        public static string Base64Decrypt(string pass,Encoding encoding)
+        public static string Base64Decrypt(string pass, Encoding encoding)
         {
             try
             {
                 encoding = encoding ?? Encoding.UTF8;
-                if(string.IsNullOrEmpty(pass))
+                if (string.IsNullOrEmpty(pass))
                     throw new Exception("密文不能为空！");
-                byte[] buffer= Convert.FromBase64String(pass);
-                return encoding.GetString(buffer);                
+                byte[] buffer = Convert.FromBase64String(pass);
+                return encoding.GetString(buffer);
             }
             catch (Exception)
             {
@@ -420,5 +438,6 @@ namespace MyTool
                 throw;
             }
         }
+        #endregion
     }
 }

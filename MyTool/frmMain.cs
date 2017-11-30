@@ -103,7 +103,7 @@ namespace MyTool
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            brsVersion.Caption = Application.ProductVersion;
+            brsVersion.Caption = Application.ProductVersion;            
         }
     }
 }
