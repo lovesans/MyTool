@@ -31,11 +31,11 @@ namespace MyTool
         {
             try
             {
-                if(!stoped)
+                if (!stoped)
                     throw new Exception("正在执行PING操作，请先结束后再开始！");
-                if(!isStop)
-                    throw new Exception("正在执行PING操作，请先结束后再开始！");                
-                if(string.IsNullOrEmpty(tbxAddr.Text))
+                if (!isStop)
+                    throw new Exception("正在执行PING操作，请先结束后再开始！");
+                if (string.IsNullOrEmpty(tbxAddr.Text))
                     throw new Exception("服务器地址必须填写！");
                 _address = tbxAddr.Text;
                 _delay = (int)tbxDelay.Value;
@@ -56,7 +56,7 @@ namespace MyTool
         }
         private void run()
         {
-            while(!isStop)
+            while (!isStop)
             {
                 try
                 {
@@ -66,15 +66,19 @@ namespace MyTool
                     byte[] buffer = new byte[_dataLength];
                     PingReply reply = ping.Send(_address, _timeOut, buffer, option);
                     string retStr = "";
-                    if(reply.Status ==IPStatus.Success)
+                    if (reply.Status == IPStatus.Success)
                     {
-                        retStr = string.Format("Server={0}  SendData={5}Bytes    RecvData={1}Bytes  Time={2}ms NotFragment={3}  TTL={4}", reply.Address, reply.Buffer.Length, reply.RoundtripTime, reply.Options.DontFragment, reply.Options.Ttl,buffer.Length);
+                        retStr = string.Format("Server={0}  SendData={5}Bytes    RecvData={1}Bytes  Time={2}ms NotFragment={3}  TTL={4}", reply.Address, reply.Buffer.Length, reply.RoundtripTime, reply.Options.DontFragment, reply.Options.Ttl, buffer.Length);
                     }
                     else
                     {
                         retStr = "失败：" + reply.Status.ToString();
                     }
-                    Invoke(new MethodInvoker(() => memoEdit1.Text += "\r\n" + retStr));
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        memoEdit1.Text += "\r\n" + retStr;
+                    }
+                    ));
                 }
                 catch (Exception)
                 {
