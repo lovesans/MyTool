@@ -90,5 +90,10 @@ namespace MyTool
         {
             LoadForm("加密解密工具", new frmCrypt());
         }
+
+        private void navBarItem5_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            LoadForm("PING工具", new frmPing());
+        }
     }
 }
