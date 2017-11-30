@@ -134,5 +134,39 @@ namespace MyTool
             }
         }
         #endregion
+        #region DES
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(tbxDESOrigin.Text))
+                    throw new Exception("原文不能为空！");
+                tbxDESCrypted.Text = "";
+                string pass = CryptUtil.DESEncrypt(tbxDESOrigin.Text, tbxDESKey.Text, tbxDESKeyIV.Text, cbxDESMode.Text, cbxDESPadding.Text, getEncoding(cbxDESCharset));
+                tbxDESCrypted.Text = pass;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(tbxDESCrypted.Text))
+                    throw new Exception("密文不能为空！");
+                tbxDESOrigin.Text = "";
+                string org = CryptUtil.DESDecrypt(tbxDESCrypted.Text, tbxDESKey.Text, tbxDESKeyIV.Text, cbxDESMode.Text, cbxDESPadding.Text, getEncoding(cbxDESCharset));
+                tbxDESOrigin.Text = org;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        
     }
 }

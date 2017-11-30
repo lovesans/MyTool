@@ -72,10 +72,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.DES = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxDESCrypted = new DevExpress.XtraEditors.MemoEdit();
             this.panel6 = new System.Windows.Forms.Panel();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxDESOrigin = new DevExpress.XtraEditors.MemoEdit();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxDESMode = new System.Windows.Forms.ComboBox();
@@ -83,9 +83,9 @@
             this.cbxDESCharset = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxDESKey = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
+            this.tbxDESKeyIV = new DevExpress.XtraEditors.MemoEdit();
             this.button5 = new System.Windows.Forms.Button();
             this.cbxDESPadding = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -117,15 +117,15 @@
             this.panel5.SuspendLayout();
             this.DES.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESCrypted.Properties)).BeginInit();
             this.panel6.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESOrigin.Properties)).BeginInit();
             this.panel7.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESKey.Properties)).BeginInit();
             this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESKeyIV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -619,7 +619,7 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.memoEdit1);
+            this.groupBox9.Controls.Add(this.tbxDESCrypted);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox9.Location = new System.Drawing.Point(499, 51);
             this.groupBox9.Name = "groupBox9";
@@ -628,13 +628,13 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "密文";
             // 
-            // memoEdit1
+            // tbxDESCrypted
             // 
-            this.memoEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit1.Location = new System.Drawing.Point(3, 17);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(399, 446);
-            this.memoEdit1.TabIndex = 1;
+            this.tbxDESCrypted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxDESCrypted.Location = new System.Drawing.Point(3, 17);
+            this.tbxDESCrypted.Name = "tbxDESCrypted";
+            this.tbxDESCrypted.Size = new System.Drawing.Size(399, 446);
+            this.tbxDESCrypted.TabIndex = 1;
             // 
             // panel6
             // 
@@ -649,7 +649,7 @@
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.memoEdit3);
+            this.groupBox11.Controls.Add(this.tbxDESOrigin);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox11.Location = new System.Drawing.Point(0, 0);
             this.groupBox11.Name = "groupBox11";
@@ -658,13 +658,13 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "原文";
             // 
-            // memoEdit3
+            // tbxDESOrigin
             // 
-            this.memoEdit3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit3.Location = new System.Drawing.Point(3, 17);
-            this.memoEdit3.Name = "memoEdit3";
-            this.memoEdit3.Size = new System.Drawing.Size(493, 127);
-            this.memoEdit3.TabIndex = 0;
+            this.tbxDESOrigin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxDESOrigin.Location = new System.Drawing.Point(3, 17);
+            this.tbxDESOrigin.Name = "tbxDESOrigin";
+            this.tbxDESOrigin.Size = new System.Drawing.Size(493, 127);
+            this.tbxDESOrigin.TabIndex = 0;
             // 
             // panel7
             // 
@@ -741,10 +741,11 @@
             this.button4.TabIndex = 0;
             this.button4.Text = "加密";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.memoEdit2);
+            this.groupBox10.Controls.Add(this.tbxDESKey);
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox10.Location = new System.Drawing.Point(0, 147);
             this.groupBox10.Name = "groupBox10";
@@ -753,17 +754,17 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "密钥(64bit/8个ASCII)";
             // 
-            // memoEdit2
+            // tbxDESKey
             // 
-            this.memoEdit2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit2.Location = new System.Drawing.Point(3, 17);
-            this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(493, 127);
-            this.memoEdit2.TabIndex = 0;
+            this.tbxDESKey.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxDESKey.Location = new System.Drawing.Point(3, 17);
+            this.tbxDESKey.Name = "tbxDESKey";
+            this.tbxDESKey.Size = new System.Drawing.Size(493, 127);
+            this.tbxDESKey.TabIndex = 0;
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.memoEdit4);
+            this.groupBox12.Controls.Add(this.tbxDESKeyIV);
             this.groupBox12.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox12.Location = new System.Drawing.Point(0, 294);
             this.groupBox12.Name = "groupBox12";
@@ -772,13 +773,13 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "初始偏移向量（64bit/8个ASCII)";
             // 
-            // memoEdit4
+            // tbxDESKeyIV
             // 
-            this.memoEdit4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.memoEdit4.Location = new System.Drawing.Point(3, 17);
-            this.memoEdit4.Name = "memoEdit4";
-            this.memoEdit4.Size = new System.Drawing.Size(493, 127);
-            this.memoEdit4.TabIndex = 0;
+            this.tbxDESKeyIV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxDESKeyIV.Location = new System.Drawing.Point(3, 17);
+            this.tbxDESKeyIV.Name = "tbxDESKeyIV";
+            this.tbxDESKeyIV.Size = new System.Drawing.Size(493, 127);
+            this.tbxDESKeyIV.TabIndex = 0;
             // 
             // button5
             // 
@@ -788,6 +789,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "解密";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // cbxDESPadding
             // 
@@ -800,11 +802,11 @@
             this.cbxDESPadding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDESPadding.FormattingEnabled = true;
             this.cbxDESPadding.Items.AddRange(new object[] {
-            "CBC",
-            "CFB",
-            "CTS",
-            "ECB",
-            "OFB"});
+            "None",
+            "PKCS7",
+            "Zeros",
+            "ANSIX923",
+            "ISO10126 = 5"});
             this.cbxDESPadding.Location = new System.Drawing.Point(428, 11);
             this.cbxDESPadding.Name = "cbxDESPadding";
             this.cbxDESPadding.Size = new System.Drawing.Size(121, 20);
@@ -858,16 +860,16 @@
             this.panel5.PerformLayout();
             this.DES.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESCrypted.Properties)).EndInit();
             this.panel6.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESOrigin.Properties)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.groupBox10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESKey.Properties)).EndInit();
             this.groupBox12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxDESKeyIV.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -918,10 +920,10 @@
         private System.Windows.Forms.ComboBox cbxSHACharset;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox9;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit tbxDESCrypted;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.GroupBox groupBox11;
-        private DevExpress.XtraEditors.MemoEdit memoEdit3;
+        private DevExpress.XtraEditors.MemoEdit tbxDESOrigin;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbxDESMode;
@@ -929,9 +931,9 @@
         private System.Windows.Forms.ComboBox cbxDESCharset;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox12;
-        private DevExpress.XtraEditors.MemoEdit memoEdit4;
+        private DevExpress.XtraEditors.MemoEdit tbxDESKeyIV;
         private System.Windows.Forms.GroupBox groupBox10;
-        private DevExpress.XtraEditors.MemoEdit memoEdit2;
+        private DevExpress.XtraEditors.MemoEdit tbxDESKey;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbxDESPadding;

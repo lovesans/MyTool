@@ -271,13 +271,17 @@ namespace MyTool
         /// <param name="txt">原文</param>
         /// <param name="key">密码</param>
         /// <param name="keyIV">偏移</param>
+        /// <param name="mode">模式</param>
+        /// <param name="padding">填充方式</param>
         /// <param name="sEncode">编码</param>
         /// <returns></returns>
-        public static string DESEncrypt(string txt, string key, string keyIV = null, CipherMode mode = CipherMode.CFB, PaddingMode padding = PaddingMode.None, Encoding sEncode = null)
+        public static string DESEncrypt(string txt, string key, string keyIV = null, string cmode = "CFB", string cpadding = "Zeros", Encoding sEncode = null)
         {
             try
             {
                 sEncode = null == sEncode ? Encoding.UTF8 : sEncode;
+                CipherMode mode = (CipherMode)Enum.Parse(typeof(CipherMode), cmode);
+                PaddingMode padding = (PaddingMode)Enum.Parse(typeof(PaddingMode), cpadding);
                 if (key.Length < 8)
                 {
                     for (int i = 0; key.Length < 8; i++)
@@ -335,13 +339,17 @@ namespace MyTool
         /// <param name="pass">密文</param>
         /// <param name="key">密码</param>
         /// <param name="keyIV">偏移</param>
+        /// <param name="padding">填充方式</param>
+        /// <param name="mode">加密方式</param>
         /// <param name="sEncode">编码</param>
         /// <returns></returns>
-        public static string DESDecrypt(string pass, string key, string keyIV, CipherMode mode = CipherMode.CFB, PaddingMode padding = PaddingMode.None, Encoding sEncode = null)
+        public static string DESDecrypt(string pass, string key, string keyIV, string cmode = "CFB", string cpadding = "Zeros", Encoding sEncode = null)
         {
             try
             {
                 sEncode = null == sEncode ? Encoding.UTF8 : sEncode;
+                CipherMode mode = (CipherMode)Enum.Parse(typeof(CipherMode), cmode);
+                PaddingMode padding = (PaddingMode)Enum.Parse(typeof(PaddingMode), cpadding);
                 if (key.Length < 8)
                 {
                     for (int i = 0; key.Length < 8; i++)

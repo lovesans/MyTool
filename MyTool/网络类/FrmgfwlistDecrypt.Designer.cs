@@ -33,12 +33,12 @@
             this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbxInterface = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxInterface = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,7 +78,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(84, 23);
             this.button3.TabIndex = 6;
-            this.button3.Text = "BASE64解密";
+            this.button3.Text = "BASE64解码";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -95,6 +95,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(897, 36);
             this.panel1.TabIndex = 7;
+            // 
+            // tbxInterface
+            // 
+            this.tbxInterface.Location = new System.Drawing.Point(419, 6);
+            this.tbxInterface.Name = "tbxInterface";
+            this.tbxInterface.Size = new System.Drawing.Size(100, 21);
+            this.tbxInterface.TabIndex = 9;
+            this.tbxInterface.Text = "pptp";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(374, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "线路名";
             // 
             // checkBox1
             // 
@@ -138,23 +155,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "解析后内容";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(374, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "线路名";
-            // 
-            // tbxInterface
-            // 
-            this.tbxInterface.Location = new System.Drawing.Point(419, 6);
-            this.tbxInterface.Name = "tbxInterface";
-            this.tbxInterface.Size = new System.Drawing.Size(100, 21);
-            this.tbxInterface.TabIndex = 9;
-            this.tbxInterface.Text = "pptp";
-            // 
             // FrmgfwlistDecrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -164,7 +164,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Name = "FrmgfwlistDecrypt";
-            this.Text = "gfwlist域名提取";
+            this.Text = "GFWlist域名提取";
             this.Resize += new System.EventHandler(this.FrmPacDecrypt_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
