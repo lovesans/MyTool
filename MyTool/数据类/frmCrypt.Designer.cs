@@ -60,6 +60,19 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbxMDSalt = new DevExpress.XtraEditors.MemoEdit();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tbxSHACrypted = new DevExpress.XtraEditors.MemoEdit();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tbxSHASalt = new DevExpress.XtraEditors.MemoEdit();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tbxSHAOrigin = new DevExpress.XtraEditors.MemoEdit();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbxSHAType = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbxSHACharset = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.BASE64.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,9 +87,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbxMD5Origin.Properties)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
+            this.SHA.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbxMDSalt.Properties)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHACrypted.Properties)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHASalt.Properties)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHAOrigin.Properties)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -91,7 +113,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1088, 543);
+            this.tabControl1.Size = new System.Drawing.Size(912, 543);
             this.tabControl1.TabIndex = 0;
             // 
             // BASE64
@@ -223,7 +245,7 @@
             this.MD5.Location = new System.Drawing.Point(4, 22);
             this.MD5.Name = "MD5";
             this.MD5.Padding = new System.Windows.Forms.Padding(3);
-            this.MD5.Size = new System.Drawing.Size(1080, 517);
+            this.MD5.Size = new System.Drawing.Size(904, 517);
             this.MD5.TabIndex = 1;
             this.MD5.Text = "MD5";
             this.MD5.UseVisualStyleBackColor = true;
@@ -234,7 +256,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(502, 43);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(575, 471);
+            this.groupBox3.Size = new System.Drawing.Size(399, 471);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "密文";
@@ -244,7 +266,7 @@
             this.tbxMD5Crypted.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxMD5Crypted.Location = new System.Drawing.Point(3, 17);
             this.tbxMD5Crypted.Name = "tbxMD5Crypted";
-            this.tbxMD5Crypted.Size = new System.Drawing.Size(569, 451);
+            this.tbxMD5Crypted.Size = new System.Drawing.Size(393, 451);
             this.tbxMD5Crypted.TabIndex = 1;
             // 
             // groupBox4
@@ -278,7 +300,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1074, 40);
+            this.panel2.Size = new System.Drawing.Size(898, 40);
             this.panel2.TabIndex = 3;
             // 
             // radioGroup1
@@ -362,9 +384,12 @@
             // 
             // SHA
             // 
+            this.SHA.Controls.Add(this.groupBox6);
+            this.SHA.Controls.Add(this.panel4);
+            this.SHA.Controls.Add(this.panel5);
             this.SHA.Location = new System.Drawing.Point(4, 22);
             this.SHA.Name = "SHA";
-            this.SHA.Size = new System.Drawing.Size(791, 517);
+            this.SHA.Size = new System.Drawing.Size(904, 517);
             this.SHA.TabIndex = 2;
             this.SHA.Text = "SHA";
             this.SHA.UseVisualStyleBackColor = true;
@@ -434,11 +459,159 @@
             this.tbxMDSalt.Size = new System.Drawing.Size(493, 211);
             this.tbxMDSalt.TabIndex = 0;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.tbxSHACrypted);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(499, 40);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(405, 477);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "密文";
+            // 
+            // tbxSHACrypted
+            // 
+            this.tbxSHACrypted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxSHACrypted.Location = new System.Drawing.Point(3, 17);
+            this.tbxSHACrypted.Name = "tbxSHACrypted";
+            this.tbxSHACrypted.Size = new System.Drawing.Size(399, 457);
+            this.tbxSHACrypted.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.groupBox7);
+            this.panel4.Controls.Add(this.groupBox8);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 40);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(499, 477);
+            this.panel4.TabIndex = 9;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.tbxSHASalt);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox7.Location = new System.Drawing.Point(0, 240);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(499, 237);
+            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Salt";
+            // 
+            // tbxSHASalt
+            // 
+            this.tbxSHASalt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxSHASalt.Location = new System.Drawing.Point(3, 17);
+            this.tbxSHASalt.Name = "tbxSHASalt";
+            this.tbxSHASalt.Size = new System.Drawing.Size(493, 217);
+            this.tbxSHASalt.TabIndex = 0;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.tbxSHAOrigin);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox8.Location = new System.Drawing.Point(0, 0);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(499, 240);
+            this.groupBox8.TabIndex = 4;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "原文";
+            // 
+            // tbxSHAOrigin
+            // 
+            this.tbxSHAOrigin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxSHAOrigin.Location = new System.Drawing.Point(3, 17);
+            this.tbxSHAOrigin.Name = "tbxSHAOrigin";
+            this.tbxSHAOrigin.Size = new System.Drawing.Size(493, 220);
+            this.tbxSHAOrigin.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.cbxSHAType);
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.cbxSHACharset);
+            this.panel5.Controls.Add(this.button3);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(904, 40);
+            this.panel5.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(182, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "加密方式";
+            // 
+            // cbxSHAType
+            // 
+            this.cbxSHAType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSHAType.FormattingEnabled = true;
+            this.cbxSHAType.Items.AddRange(new object[] {
+            "sha1($pass)",
+            "sha1($pass.$salt)",
+            "sha1($salt.$pass)",
+            "sha256($pass)",
+            "sha256($pass.$salt)",
+            "sha256($salt.$pass)",
+            "sha384($pass)",
+            "sha384($pass.$salt)",
+            "sha384($salt.$pass)",
+            "sha512($pass)",
+            "sha512($pass.$salt)",
+            "sha512($salt.$pass)"});
+            this.cbxSHAType.Location = new System.Drawing.Point(241, 13);
+            this.cbxSHAType.Name = "cbxSHAType";
+            this.cbxSHAType.Size = new System.Drawing.Size(121, 20);
+            this.cbxSHAType.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 12);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "字符集";
+            // 
+            // cbxSHACharset
+            // 
+            this.cbxSHACharset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSHACharset.FormattingEnabled = true;
+            this.cbxSHACharset.Items.AddRange(new object[] {
+            "UTF-7",
+            "UTF-8",
+            "UTF-32",
+            "UNICODE",
+            "ASCII",
+            "GB2312",
+            "GB18030",
+            "GBK"});
+            this.cbxSHACharset.Location = new System.Drawing.Point(54, 11);
+            this.cbxSHACharset.Name = "cbxSHACharset";
+            this.cbxSHACharset.Size = new System.Drawing.Size(121, 20);
+            this.cbxSHACharset.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(368, 13);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "加密";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // frmCrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1088, 543);
+            this.ClientSize = new System.Drawing.Size(912, 543);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmCrypt";
             this.Text = "加密解密工具";
@@ -458,9 +631,19 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
+            this.SHA.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbxMDSalt.Properties)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHACrypted.Properties)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHASalt.Properties)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxSHAOrigin.Properties)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -499,5 +682,18 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.GroupBox groupBox5;
         private DevExpress.XtraEditors.MemoEdit tbxMDSalt;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private DevExpress.XtraEditors.MemoEdit tbxSHACrypted;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private DevExpress.XtraEditors.MemoEdit tbxSHASalt;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private DevExpress.XtraEditors.MemoEdit tbxSHAOrigin;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbxSHAType;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbxSHACharset;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -18,6 +18,21 @@ namespace MyTool
         md5md5dollarpassdotmd5dollarsalt,
         md5md5dollarsaltdotmd5dollarpass
     }
+    public enum SHACrypType
+    {
+        sha1dollarpass,
+        sha1dollarpassdotdollarsalt,
+        sha1dollarsaltdotdollarpass,
+        sha256dollarpass,
+        sha256dollarpassdotdollarsalt,
+        sha256dollarsaltdotdollarpass,
+        sha384dollarpass,
+        sha384dollarpassdotdollarsalt,
+        sha384dollarsaltdotdollarpass,
+        sha512dollarpass,
+        sha512dollarpassdotdollarsalt,
+        sha512dollarsaltdotdollarpass
+    }
     public enum MD5ReturnType
     {
         MD32大,

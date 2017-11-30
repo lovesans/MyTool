@@ -103,6 +103,7 @@ namespace MyTool
                         break;
                 }
                 return pass;
+                
             }
             catch (Exception)
             {
@@ -110,6 +111,157 @@ namespace MyTool
                 throw;
             }
         }
+#region SHA
+        private static string SHA1Crypt(string txt,Encoding encoding=null)
+        {
+            try
+            {
+                encoding = encoding ?? Encoding.UTF8;
+                if(string.IsNullOrEmpty(txt))
+                    throw new Exception("原文不能为空！");
+                SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
+                byte[] org = encoding.GetBytes(txt);
+                byte[] output = sha1.ComputeHash(org);
+                string retStr = "";
+                for (int i = 0; i < output.Length; i++)
+                {
+                    retStr += output[i].ToString("x2");
+                }
+                return retStr;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        private static string SHA256Crypt(string txt, Encoding encoding = null)
+        {
+            try
+            {
+                encoding = encoding ?? Encoding.UTF8;
+                if (string.IsNullOrEmpty(txt))
+                    throw new Exception("原文不能为空！");
+                SHA256CryptoServiceProvider sha = new SHA256CryptoServiceProvider();
+                byte[] org = encoding.GetBytes(txt);
+                byte[] output = sha.ComputeHash(org);
+                string retStr = "";
+                for (int i = 0; i < output.Length; i++)
+                {
+                    retStr += output[i].ToString("x2");
+                }
+                return retStr;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        private static string SHA384Crypt(string txt, Encoding encoding = null)
+        {
+            try
+            {
+                encoding = encoding ?? Encoding.UTF8;
+                if (string.IsNullOrEmpty(txt))
+                    throw new Exception("原文不能为空！");
+                SHA384CryptoServiceProvider sha = new SHA384CryptoServiceProvider();
+                byte[] org = encoding.GetBytes(txt);
+                byte[] output = sha.ComputeHash(org);
+                string retStr = "";
+                for (int i = 0; i < output.Length; i++)
+                {
+                    retStr += output[i].ToString("x2");
+                }
+                return retStr;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        private static string SHA512Crypt(string txt, Encoding encoding = null)
+        {
+            try
+            {
+                encoding = encoding ?? Encoding.UTF8;
+                if (string.IsNullOrEmpty(txt))
+                    throw new Exception("原文不能为空！");
+                SHA512CryptoServiceProvider sha = new SHA512CryptoServiceProvider();
+                byte[] org = encoding.GetBytes(txt);
+                byte[] output = sha.ComputeHash(org);
+                string retStr = "";
+                for (int i = 0; i < output.Length; i++)
+                {
+                    retStr += output[i].ToString("x2");
+                }
+                return retStr;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static string SHAEncrypt(string txt,string salt,SHACrypType cType,Encoding encoding=null)
+        {
+            try
+            {
+                encoding = encoding ?? Encoding.UTF8;
+                if(string.IsNullOrEmpty(txt))
+                    throw new Exception("原文不能为空！");
+                string pass = "";
+                switch (cType)
+                {
+                    case SHACrypType.sha1dollarpass:
+                        pass = SHA1Crypt(txt, encoding);
+                        break;
+                    case SHACrypType.sha1dollarpassdotdollarsalt:
+                        pass = SHA1Crypt(txt + salt, encoding);
+                        break;
+                    case SHACrypType.sha1dollarsaltdotdollarpass:
+                        pass = SHA1Crypt(salt + txt, encoding);
+                        break;
+                    case SHACrypType.sha256dollarpass:
+                        pass = SHA256Crypt(txt, encoding);
+                        break;
+                    case SHACrypType.sha256dollarpassdotdollarsalt:
+                        pass = SHA256Crypt(txt + salt, encoding);
+                        break;
+                    case SHACrypType.sha256dollarsaltdotdollarpass:
+                        pass = SHA256Crypt(salt + txt, encoding);
+                        break;
+                    case SHACrypType.sha384dollarpass:
+                        pass = SHA384Crypt(txt, encoding);
+                        break;
+                    case SHACrypType.sha384dollarpassdotdollarsalt:
+                        pass = SHA384Crypt(txt + salt, encoding);
+                        break;
+                    case SHACrypType.sha384dollarsaltdotdollarpass:
+                        pass = SHA384Crypt(salt + txt, encoding);
+                        break;
+                    case SHACrypType.sha512dollarpass:
+                        pass = SHA512Crypt(txt, encoding);
+                        break;
+                    case SHACrypType.sha512dollarpassdotdollarsalt:
+                        pass = SHA512Crypt(txt + salt, encoding);
+                        break;
+                    case SHACrypType.sha512dollarsaltdotdollarpass:
+                        pass = SHA512Crypt(salt + txt, encoding);
+                        break;
+                    default:
+                        break;
+                }
+                return pass;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+#endregion
         /// <summary>
         /// DES加密
         /// </summary>

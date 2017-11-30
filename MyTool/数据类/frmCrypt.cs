@@ -101,8 +101,38 @@ namespace MyTool
                 MessageBox.Show(ex.Message);
             }
         }
+
         #endregion
+        #region SHA
+        private SHACrypType getShaType()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(cbxSHAType.Text))
+                    throw new Exception("必须选择加密方式！");
+                return (SHACrypType)Enum.Parse(typeof(SHACrypType), cbxSHAType.Text.Replace("(", "").Replace(")", "").Replace("$", "dollar").Replace(".", "dot"));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
-
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tbxSHACrypted.Text = "";
+                string txt = tbxSHAOrigin.Text;
+                string salt = tbxSHASalt.Text;
+                string pass = CryptUtil.SHAEncrypt(txt, salt, getShaType(), getEncoding(cbxSHACharset));
+                tbxSHACrypted.Text = pass;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
     }
 }
