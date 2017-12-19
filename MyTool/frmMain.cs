@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace MyTool
 {
@@ -101,7 +103,7 @@ namespace MyTool
             System.Diagnostics.Process.Start("http://www.261k.com");
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private unsafe void frmMain_Load(object sender, EventArgs e)
         {
             brsVersion.Caption = Application.ProductVersion;            
         }

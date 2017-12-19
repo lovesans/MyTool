@@ -100,13 +100,36 @@ namespace MyTool
         {
             try
             {
-                System.Net.WebClient wc = new System.Net.WebClient();
-                string res = wc.DownloadString("https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt");
-                memoEdit1.Text = res;
+                button2.Text = "正在下载...";
+                System.Threading.Tasks.Task tsk = new System.Threading.Tasks.Task(downList);
+                tsk.Start();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void downList()
+        {
+            try
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string res = wc.DownloadString("https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt");
+                Invoke(new MethodInvoker(() =>
+                {
+                    memoEdit1.Text = res;
+                    button2.Text = "下载列表";
+                }
+                ));
+            }
+            catch (Exception)
+            {
+                Invoke(new MethodInvoker(() =>
+                {
+                    memoEdit1.Text = "";
+                    button2.Text = "下载列表";
+                }
+                ));
             }
         }
     }
